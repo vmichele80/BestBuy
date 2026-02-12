@@ -1,3 +1,4 @@
+from threading import activeCount
 
 
 class Product:
@@ -10,20 +11,23 @@ class Product:
         self.name = name
         self.price = price
         self.quantity = quantity
+        self.active = True
+        # error handling on the input still to implement
 
     def get_quantity(self):
         """
         Getter function for quantity.
         Returns the quantity (int).
         """
-        pass
+        return self.quantity
+
 
     def set_quantity(self, quantity):
         """
         Setter function for quantity.
         If quantity reaches 0, deactivates the product.
         """
-        pass
+        self.quantity = quantity
 
     def is_active(self) -> bool:
         """
@@ -31,26 +35,28 @@ class Product:
         Returns True if the product is active, otherwise
         False.
         """
-        pass
+        return  self.active
+
+
 
     def activate(self):
         """
         Activates the product.
         """
-        pass
+        self.active = True
 
     def deactivate(self):
         """
         Deactivates the product.
         """
-        pass
+        self.active = False
 
     def show(self):
         """
         Prints a string that represents the product, for example:
         "MacBook Air M2, Price: 1450, Quantity: 100"
         """
-        pass
+        print(f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
 
     def buy(self, quantity) -> float:
         """
@@ -59,4 +65,8 @@ class Product:
         - Updates the quantity of the product.
         - In case of a problem (when? think about it), raises an Exception.
         """
-        pass
+        new_quantity = self.quantity - quantity
+        self.set_quantity(new_quantity)
+        return float(quantity * self.price) # returns the price in dollars
+
+        #error handling still to be handled
