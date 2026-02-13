@@ -8,8 +8,7 @@ product_list = [Product("MacBook Air M2", price=1450, quantity=100),
 
 best_buy = Store(product_list)
 
-for product in best_buy.product_list:
-    product.show()
+best_buy.get_all_products()
 
 """
 bose = Product("Bose QuietComfort Earbuds", price=250, quantity=500)

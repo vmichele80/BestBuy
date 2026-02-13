@@ -21,7 +21,10 @@ class Store:
 
     def get_all_products(self) -> list[Product]:
         """Returns all products in the store that are active."""
-        pass
+        for product in self.product_list:
+            if product.is_active():
+                product.show()
+
 
     def order(self, shopping_list) -> float:
         """Gets a list of tuples, where each tuple has 2 items:
