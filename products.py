@@ -1,18 +1,27 @@
-from threading import activeCount
-
 
 class Product:
+
     def __init__(self, name, price, quantity):
         """
         Initiator (constructor) method.
         Creates the instance variables (active is set to True).
         If something is invalid (empty name / negative price or quantity), raises an exception.
         """
+        if not name or not name.strip():
+            raise ValueError("Product name cannot be empty.")
+
+        if price < 0:
+            raise ValueError("Price cannot be negative.")
+
+        if quantity < 0:
+            raise ValueError("Quantity cannot be negative.")
+
         self.name = name
         self.price = price
         self.quantity = quantity
         self.active = True
         # error handling on the input still to implement
+
 
     def get_quantity(self):
         """
@@ -27,9 +36,12 @@ class Product:
         Setter function for quantity.
         If quantity reaches 0, deactivates the product.
         """
+        if quantity < 0:
+            raise ValueError("Quantity cannot be negative.")
         self.quantity = quantity
         if self.quantity <= 0:
             self.active = False
+
 
     def is_active(self) -> bool:
         """
@@ -40,12 +52,12 @@ class Product:
         return  self.active
 
 
-
     def activate(self):
         """
         Activates the product.
         """
         self.active = True
+
 
     def deactivate(self):
         """
@@ -53,12 +65,14 @@ class Product:
         """
         self.active = False
 
+
     def show(self):
         """
         Prints a string that represents the product, for example:
         "MacBook Air M2, Price: 1450, Quantity: 100"
         """
-        return (f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
+        return f"{self.name}, Price: {self.price}, Quantity: {self.quantity}"
+
 
     def buy(self, quantity) -> float:
         """
@@ -71,4 +85,4 @@ class Product:
         self.set_quantity(new_quantity)
         return float(quantity * self.price) # returns the price in dollars
 
-        #error handling still to be handled
+
