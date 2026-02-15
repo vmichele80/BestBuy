@@ -25,9 +25,11 @@ class Store:
     def get_all_products(self) -> list[Product]:
         """Returns all products in the store that are active."""
         active_products_list = []
+        list_number = 0
         for product in self.product_list:
             if product.is_active():
-                product.show()
+                list_number += 1
+                print(f"{list_number}. {product.show()}")
                 active_products_list.append(product)
         return active_products_list
 

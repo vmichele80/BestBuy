@@ -58,7 +58,7 @@ class Product:
         Prints a string that represents the product, for example:
         "MacBook Air M2, Price: 1450, Quantity: 100"
         """
-        print(f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
+        return (f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
 
     def buy(self, quantity) -> float:
         """
