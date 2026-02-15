@@ -54,9 +54,9 @@ def add_to_shopping_list(shopping_list):
             product_choice = int(product_choice)
 
             if 0 < product_choice <= len(product_list):
+                available_items = product_list[product_choice - 1].quantity
                 quantity = int(input(f"What amount do you want? Max {available_items} available:\n"))
                 if 0 < quantity <= available_items:
-                    available_items = product_list[product_choice - 1].quantity
                     shopping_list.append((product_list[product_choice - 1], quantity))
                     print("Product added to shopping list!\n")
                 else:
