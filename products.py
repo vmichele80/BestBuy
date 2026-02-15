@@ -28,6 +28,8 @@ class Product:
         If quantity reaches 0, deactivates the product.
         """
         self.quantity = quantity
+        if self.quantity <= 0:
+            self.active = False
 
     def is_active(self) -> bool:
         """

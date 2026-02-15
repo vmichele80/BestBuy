@@ -4,7 +4,7 @@ from products import Product
 class Store:
 
     def __init__(self, product_list: list):
-        """it initilises an istance of a store"""
+        """it initialises an istance of a store"""
         self.product_list = product_list
 
     def add_product(self, product):
@@ -17,17 +17,26 @@ class Store:
 
     def get_total_quantity(self) -> int:
         """Returns how many items are in the store in total."""
-        pass
+        total_quantity = 0
+        for product in self.product_list:
+            total_quantity += product.quantity
+        return total_quantity
 
     def get_all_products(self) -> list[Product]:
         """Returns all products in the store that are active."""
+        active_products_list = []
         for product in self.product_list:
             if product.is_active():
                 product.show()
+                active_products_list.append(product)
+        return active_products_list
 
 
     def order(self, shopping_list) -> float:
         """Gets a list of tuples, where each tuple has 2 items:
         Product (Product class) and quantity (int).
         Buys the products and returns the total price of the order."""
-        pass
+        total_order_price = 0.0
+        for product, quantity in shopping_list:
+            total_order_price += product.buy(quantity)
+        return total_order_price
