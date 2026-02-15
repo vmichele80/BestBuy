@@ -23,8 +23,8 @@ def start(store):
         print("")
     elif user_choice == "3":
         shopping_list = []
-        store.get_all_products()
-        add_to_shopping_list(shopping_list)
+        active_products = store.get_all_products()
+        add_to_shopping_list(shopping_list, active_products)
         try:
             total = store.order(shopping_list)
             print("********")
@@ -39,7 +39,7 @@ def start(store):
         print("You have entered a wrong option")
 
 
-def add_to_shopping_list(shopping_list):
+def add_to_shopping_list(shopping_list, active_products):
     """
     this function creates the shopping list
     I need to create a list of tuples with product name and quantity
@@ -53,11 +53,11 @@ def add_to_shopping_list(shopping_list):
 
             product_choice = int(product_choice)
 
-            if 0 < product_choice <= len(product_list):
-                available_items = product_list[product_choice - 1].quantity
+            if 0 < product_choice <= len(active_products):
+                available_items = active_products[product_choice - 1].quantity
                 quantity = int(input(f"What amount do you want? Max {available_items} available:\n"))
                 if 0 < quantity <= available_items:
-                    shopping_list.append((product_list[product_choice - 1], quantity))
+                    shopping_list.append((active_products[product_choice - 1], quantity))
                     print("Product added to shopping list!\n")
                 else:
                     print(f"We could not place your order. We only have {available_items}")
